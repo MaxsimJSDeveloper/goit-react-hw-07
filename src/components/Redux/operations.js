@@ -1,5 +1,6 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSelector } from "@reduxjs/toolkit";
 import axios from "axios";
+import { selectFilter } from "./selectors";
 
 axios.defaults.baseURL = "https://6659ad32de346625136d79ea.mockapi.io/";
 
@@ -37,4 +38,16 @@ export const deleteContact = createAsyncThunk(
       return thunkAPI.rejectWithValue(e.message);
     }
   }
+);
+
+const filterContacts = (contacts, filter) => {
+  return contacts.items.filter((contact) =>
+    contact.name.toLowerCase().includes(filter.name.toLowerCase())
+  );
+};
+
+export const selectContact = (state) => state.contacts;
+export const filteredContacts = createSelector(
+  [selectContact, selectFilter],
+  (contacts, filter) => filterContacts(contacts, filter)
 );

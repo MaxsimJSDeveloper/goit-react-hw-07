@@ -1,18 +1,15 @@
-// import { createSlice } from "@reduxjs/toolkit";
-// import { handlePending, handleRejected } from "./contactsSlice";
+import { createSlice } from "@reduxjs/toolkit";
 
-// const filterSlice = createSlice({
-//   name: "filter",
-//   initialState: { name: "" },
-//   extraReducers: (builder) => {
-//     builder
-//       .addCase(findContacts.rejected, handleRejected)
-//       .addCase(findContacts.pending, handlePending)
-//       .addCase(findContacts.fulfilled, (state, action) => {
-//         state.isLoading = false;
-//         state.error = null;
-//         state.items = action.payload;
-//       });
-//   },
-// });
-// export const filterReducer = filterSlice.reducer;
+const filterReducer = createSlice({
+  name: "filter",
+  initialState: { name: "" },
+  reducers: {
+    changeFilter: (state, action) => ({
+      ...state,
+      name: action.payload,
+    }),
+  },
+});
+export const { changeFilter } = filterReducer.actions;
+
+export default filterReducer.reducer;
