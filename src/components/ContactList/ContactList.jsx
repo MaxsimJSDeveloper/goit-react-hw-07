@@ -1,13 +1,14 @@
 import { useSelector } from "react-redux";
 import Contact from "../Contact/Contact";
 import css from "./ContactList.module.css";
-import { getContacts, getError, getIsLoading } from "../Redux/selectors";
+import { getError, getIsLoading } from "../Redux/selectors";
+import { filteredContacts } from "../Redux/operations";
 
 const ContactList = () => {
   const isLoading = useSelector(getIsLoading);
   const error = useSelector(getError);
 
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(filteredContacts);
   return (
     <ul className={css.contactList}>
       {isLoading && !error && <b>Request in progress...</b>}
