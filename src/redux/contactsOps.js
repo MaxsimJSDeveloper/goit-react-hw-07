@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSelector } from "@reduxjs/toolkit";
 import axios from "axios";
-import { selectFilter } from "./selectors";
+import { selectContacts, selectFilter } from "./selectors";
 
 axios.defaults.baseURL = "https://6659ad32de346625136d79ea.mockapi.io/";
 
@@ -41,13 +41,14 @@ export const deleteContact = createAsyncThunk(
 );
 
 const filterContacts = (contacts, filter) => {
-  return contacts.items.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.name.toLowerCase())
+  return contacts.filter(
+    (contact) =>
+      contact.name.toLowerCase().includes(filter.toLowerCase()) ||
+      contact.number.includes(filter)
   );
 };
 
-export const selectContact = (state) => state.contacts;
 export const filteredContacts = createSelector(
-  [selectContact, selectFilter],
+  [selectContacts, selectFilter],
   (contacts, filter) => filterContacts(contacts, filter)
 );
