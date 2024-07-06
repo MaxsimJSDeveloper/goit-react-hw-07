@@ -1,34 +1,55 @@
-/* Contact.module.css */
-
 .contact {
   padding: 10px;
-  margin-bottom: 10px;
   display: flex;
+  align-items: center;
+  background-color: #dadada;
+  border-radius: 12px;
+  height: 80px;
 }
 
-.contactName {
-  font-weight: bold;
+.contact:hover {
+  background-color: #d3d3d3;
 }
 
-.contactNumber {
-  color: #666;
+.avatar {
+  margin-right: 15px;
+}
+
+.data {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-right: auto;
+}
+
+.info {
+  color: #333;
+  font-size: 16px;
+}
+
+.button {
+  border: none;
+  background-color: inherit;
+}
+
+.infoIcon {
+  fill: #2a5cd1;
+  margin-right: 5px;
+  width: 18px;
+  height: 18px;
 }
 
 .deleteButton {
-  cursor: pointer;
+  background-color: inherit;
   border: none;
 }
 
-.icon {
+.bin {
   width: 36px;
   height: 36px;
   fill: #dc0007;
 }
 
-.icon:hover {
+.bin:hover {
   fill: #a90006;
-}
-
-.data {
-  margin-right: auto;
 }

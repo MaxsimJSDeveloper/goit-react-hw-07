@@ -1,9 +1,12 @@
-/* ContactForm.module.css */
-
 .formContainer {
-  max-width: 400px;
   margin: 0 auto;
   margin-bottom: 20px;
+  background-color: #d7d7d7;
+  width: 500px;
+  height: 280px;
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
 }
 
 .label {
@@ -14,9 +17,15 @@
 .inputField {
   width: 100%;
   padding: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  padding-left: 30px;
+}
+
+.wrap {
+  height: 60px;
+  margin-bottom: 5px;
 }
 
 .errorMessage {
@@ -27,15 +36,38 @@
 
 .submitButton {
   display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
+  margin: 0 auto;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
 }
 
 .submitButton:hover {
-  background-color: #0056b3;
+  background-color: inherit;
+}
+
+.submit {
+  fill: #0056b3;
+  width: 60px;
+  height: 60px;
+}
+
+.submit:hover {
+  fill: #004998;
+}
+
+.user {
+  position: absolute;
+  top: 19%;
+  left: 6%;
+  fill: #00986a;
+}
+
+.phone {
+  position: absolute;
+  top: 51%;
+  left: 6%;
+  fill: #00986a;
 }

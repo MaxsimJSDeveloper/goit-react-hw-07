@@ -1,27 +1,16 @@
 import css from "./ContactForm.module.css";
 
 import { Field, Form, Formik, ErrorMessage } from "formik";
-import * as Yup from "yup";
+
 import { useId } from "react";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contactsOps";
-
-const FeedbackSchema = Yup.object().shape({
-  username: Yup.string()
-    .min(3, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
-  number: Yup.string()
-    .matches(
-      /^(?:\d{10}|\d{3}-\d{3}-\d{2}-\d{2})$/,
-      "Phone number must be 10 digits long or in format xxx-xxx-xx-xx"
-    )
-    .required("Required"),
-});
+import { FeedbackSchema, handleKeyPress } from "../../js/validation";
+import { CiCirclePlus } from "react-icons/ci";
+import { FaPhoneAlt, FaUser } from "react-icons/fa";
 
 const ContactForm = () => {
-  const nameFieldId = useId();
-  const phoneFieldId = useId();
+  const id = useId();
 
   const dispatch = useDispatch();
 
@@ -39,38 +28,46 @@ const ContactForm = () => {
       }}
     >
       <Form className={css.formContainer}>
-        <label htmlFor={nameFieldId} className={css.label}>
+        <label htmlFor={`${id}-n`} className={css.label}>
           Username
         </label>
-        <Field
-          type="text"
-          name="username"
-          id={nameFieldId}
-          className={css.inputField}
-        />
-        <ErrorMessage
-          name="username"
-          component="span"
-          className={css.errorMessage}
-        />
+        <div className={css.wrap}>
+          <FaUser className={css.user} />
+          <Field
+            type="text"
+            name="username"
+            id={`${id}-n`}
+            className={css.inputField}
+          />
+          <ErrorMessage
+            name="username"
+            component="span"
+            className={css.errorMessage}
+          />
+        </div>
 
-        <label htmlFor={phoneFieldId} className={css.label}>
+        <label htmlFor={`${id}-p`} className={css.label}>
           Phone
         </label>
-        <Field
-          type="text"
-          name="number"
-          id={phoneFieldId}
-          className={css.inputField}
-        />
-        <ErrorMessage
-          name="number"
-          component="span"
-          className={css.errorMessage}
-        />
+        <div className={css.wrap}>
+          <FaPhoneAlt className={css.phone} />
+          <Field
+            type="text"
+            name="number"
+            pattern="\d*"
+            onKeyPress={handleKeyPress}
+            id={`${id}-p`}
+            className={css.inputField}
+          ></Field>
+          <ErrorMessage
+            name="number"
+            component="span"
+            className={css.errorMessage}
+          />
+        </div>
 
         <button type="submit" className={css.submitButton}>
-          Add contact
+          <CiCirclePlus className={css.submit} />
         </button>
       </Form>
     </Formik>

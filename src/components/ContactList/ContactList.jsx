@@ -3,6 +3,7 @@ import Contact from "../Contact/Contact";
 import css from "./ContactList.module.css";
 import { selectError, selectIsLoading } from "../../redux/selectors";
 import { filteredContacts } from "../../redux/contactsOps";
+import Loader from "../Loader/Loader";
 
 const ContactList = () => {
   const isLoading = useSelector(selectIsLoading);
@@ -11,7 +12,7 @@ const ContactList = () => {
 
   return (
     <ul className={css.contactList}>
-      {isLoading && !error && <b>Request in progress...</b>}
+      {isLoading && !error && <Loader />}
       {contacts.map((contact) => {
         return (
           <li key={contact.id} className={css.contactItem}>
